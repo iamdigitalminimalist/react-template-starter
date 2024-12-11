@@ -25,5 +25,5 @@ dist-ssr
 
 # Experiments
 tests/excluded/*
-src/components/*
+src/components/excluded
 src/entities.ts
