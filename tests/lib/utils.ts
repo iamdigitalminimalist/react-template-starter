@@ -1,22 +1,31 @@
-import { http, HttpResponse, JsonBodyType } from 'msw';
+import { http, HttpResponse, JsonBodyType, delay } from 'msw';
 import { server } from '../mocks/server';
 
 /**
- * Generic helper to mock GET requests with optional data.
- * @param endpoint The API endpoint to mock.
- * @param data Data to return on a successful response.
+ * Mocks a GET request with either a successful or error response.
+ *
+ * @template T - The type of the JSON body to return in the response.
+ * @param endpoint - The API endpoint to mock.
+ * @param options - Configuration options for the mock response.
+ * @param options.data - The data to return in the response body for a successful request.
+ * @param options.error - If `true`, simulates an error response (default: `false`).
+ * @param options.shouldDelay - If `true`, introduces a delay before the response (default is `false`).
  */
-export const mockGetRequest = <T extends JsonBodyType>(
+export const mockGetRequest = async <T extends JsonBodyType>(
   endpoint: string,
-  data: T | T[],
+  options: {
+    data: T | T[] | null;
+    error?: boolean;
+    shouldDelay?: boolean;
+  },
 ) => {
-  server.use(http.get(endpoint, () => HttpResponse.json(data)));
-};
+  const { data = null, error = false, shouldDelay = false } = options;
 
-/**
- * Helper to mock GET requests that return an error.
- * @param endpoint The API endpoint to mock.
- */
-export const mockFailedGetRequest = (endpoint: string) => {
-  server.use(http.get(endpoint, () => HttpResponse.error()));
+  if (shouldDelay) await delay();
+
+  const handler = error
+    ? http.get(endpoint, () => HttpResponse.error())
+    : http.get(endpoint, () => HttpResponse.json(data));
+
+  server.use(handler);
 };
