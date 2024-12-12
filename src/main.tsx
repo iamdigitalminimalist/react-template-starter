@@ -6,7 +6,7 @@ import { BrowserRouter, Route, Routes } from 'react-router';
 import PlayGroundPage from './pages/PlayGroundPage.tsx';
 import Providers from './providers';
 import '../axios.interceptors';
-import TechStackPage from './pages/TechStackPage.tsx';
+import TechStackPage from './pages/TechStackPage';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
