@@ -5,6 +5,7 @@ import App from './App.tsx';
 import { BrowserRouter, Route, Routes } from 'react-router';
 import PlayGroundPage from './pages/PlayGroundPage.tsx';
 import Providers from './providers';
+import '../axios.interceptors';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

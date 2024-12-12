@@ -6,8 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "eslint .",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
+    "server": "json-server --watch src/data/db.json src/data/routes.json --static ./public/json-server --port 3000",
+    "start": "concurrently -n SERVER,CLIENT -c yellow,blue \"npm run server\" \"npm run dev\"",
     "test": "vitest",
     "test:ui": "vitest --ui"
   },
@@ -19,6 +21,7 @@
     "axios": "^1.7.9",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "json-server": "^1.0.0-beta.3",
     "lucide-react": "^0.468.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -40,6 +43,7 @@
     "@vitejs/plugin-react": "^4.3.4",
     "@vitest/ui": "^2.1.8",
     "autoprefixer": "^10.4.20",
+    "concurrently": "^9.1.0",
     "eslint": "^9.15.0",
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.14",

@@ -11,6 +11,7 @@ node_modules
 dist
 dist-ssr
 *.local
+*.env
 
 # Editor directories and files
 .vscode/*
@@ -26,4 +27,5 @@ dist-ssr
 # Experiments
 tests/excluded/*
 src/components/excluded
+src/data/*
 src/entities.ts
