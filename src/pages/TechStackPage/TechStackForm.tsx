@@ -26,7 +26,7 @@ import {
 import { useToast } from '@/hooks/use-toast';
 import { techStackSchema, type TechStackSchema } from '@/schemas';
 import useCategories from './hooks/useCategories';
-import { TechStack } from './hooks/useTechStack';
+import { TechStack } from './types';
 
 interface TechStackFormProps {
   onCloseDialog: () => void;

@@ -1,14 +1,6 @@
-import { Category } from '@/entities';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-
-export interface TechStack {
-  id: number;
-  name: string;
-  description: string;
-  categories: Category[];
-  docsLink?: string;
-}
+import { TechStack } from '../types';
 
 export function useTechStack() {
   const fetchTechStack = async () => {

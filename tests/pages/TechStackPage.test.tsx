@@ -7,9 +7,9 @@ import {
 import { simulateDelay, simulateError } from '../lib/utils';
 import { AllProvider } from '../providers';
 import TechStackPage from '@/pages/TechStackPage';
-import { Category, TechStack } from '@/entities';
 import { db } from '../mocks/db';
 import userEvent from '@testing-library/user-event';
+import { Category, TechStack } from '@/pages/TechStackPage/types';
 
 describe('TechStackPage', () => {
   const categories: Category[] = [];

@@ -1,6 +1,6 @@
-import { Category } from '@/entities';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
+import { Category } from '../types';
 
 export default function useCategories() {
   const fetchCategories = async () => {
