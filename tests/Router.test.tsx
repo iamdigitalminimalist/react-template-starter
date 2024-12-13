@@ -4,32 +4,27 @@ import routes from '@/routes';
 import { render } from '@testing-library/react';
 
 describe('Router', () => {
-  it('should render the home page for /', () => {
-    navigateTo('/');
-    expect(
-      screen.getByRole('heading', { level: 1, name: /home/i }),
-    ).toBeInTheDocument();
-  });
+  const routeTests = [
+    { route: '/', heading: /home/i },
+    { route: '/playground', heading: /playground/i },
+    { route: '/techstack', heading: /tech stack/i },
+    { route: '/invalid-route', heading: /not found/i },
+  ];
 
-  it('should render the playground page for /playground', () => {
-    navigateTo('/playground');
-    expect(
-      screen.getByRole('heading', { level: 1, name: /playground/i }),
-    ).toBeInTheDocument();
-  });
+  it.each(routeTests)(
+    'should render the correct page for $route',
+    ({ route, heading }) => {
+      navigateTo(route);
 
-  it('should render the tech stack page for /techstack', () => {
-    navigateTo('/techstack');
-    expect(
-      screen.getByRole('heading', { level: 1, name: /tech stack/i }),
-    ).toBeInTheDocument();
-  });
-
-  it('should render the not found page for invalid routes', () => {
-    navigateTo('/invalid-route');
-
-    expect(screen.getByText(/not found/i)).toBeInTheDocument();
-  });
+      if (route === '/invalid-route') {
+        expect(screen.getByText(heading)).toBeInTheDocument();
+      } else {
+        expect(
+          screen.getByRole('heading', { level: 1, name: heading }),
+        ).toBeInTheDocument();
+      }
+    },
+  );
 });
 
 const navigateTo = (path: string) => {
