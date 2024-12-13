@@ -1,0 +1,279 @@
+{
+  "techstack": [
+    {
+      "id": 1,
+      "name": "React",
+      "description": "A JavaScript library for building user interfaces.",
+      "categories": [
+        {
+          "id": 1,
+          "name": "Frameworks"
+        }
+      ],
+      "docsLink": "https://react.dev/reference/react"
+    },
+    {
+      "id": 2,
+      "name": "TypeScript",
+      "description": "A strongly typed programming language for JavaScript.",
+      "categories": [
+        {
+          "id": 2,
+          "name": "Languages"
+        }
+      ],
+      "docsLink": "https://www.typescriptlang.org/docs/"
+    },
+    {
+      "id": 3,
+      "name": "Vite",
+      "description": "A next-generation, fast development server and build tool.",
+      "categories": [
+        {
+          "id": 3,
+          "name": "Build Tools"
+        }
+      ],
+      "docsLink": "https://vitejs.dev/guide/"
+    },
+    {
+      "id": 4,
+      "name": "TailwindCSS",
+      "description": "A utility-first CSS framework for rapid UI development.",
+      "categories": [
+        {
+          "id": 4,
+          "name": "CSS Frameworks"
+        }
+      ],
+      "docsLink": "https://tailwindcss.com/docs"
+    },
+    {
+      "id": 5,
+      "name": "ShadcnUI",
+      "description": "A set of unstyled, fully accessible UI primitives for React.",
+      "categories": [
+        {
+          "id": 5,
+          "name": "UI Libraries"
+        }
+      ],
+      "docsLink": "https://ui.shadcn.com/docs"
+    },
+    {
+      "id": 6,
+      "name": "Vitest",
+      "description": "A blazing fast unit test framework built by the Vite team.",
+      "categories": [
+        {
+          "id": 6,
+          "name": "Testing"
+        }
+      ],
+      "docsLink": "https://vitest.dev/guide/"
+    },
+    {
+      "id": 7,
+      "name": "React Testing Library",
+      "description": "A testing utility to help with testing React components.",
+      "categories": [
+        {
+          "id": 6,
+          "name": "Testing"
+        }
+      ],
+      "docsLink": "https://testing-library.com/docs/react-testing-library/intro/"
+    },
+    {
+      "id": 8,
+      "name": "ESLint",
+      "description": "A tool for identifying and fixing problems in JavaScript code.",
+      "categories": [
+        {
+          "id": 7,
+          "name": "Linting"
+        }
+      ],
+      "docsLink": "https://eslint.org/docs"
+    },
+    {
+      "id": 9,
+      "name": "React Query",
+      "description": "A data-fetching and state management library for React.",
+      "categories": [
+        {
+          "id": 8,
+          "name": "State Management"
+        }
+      ],
+      "docsLink": "https://tanstack.com/query/latest"
+    },
+    {
+      "id": 10,
+      "name": "React Router",
+      "description": "Declarative routing for React.js applications.",
+      "categories": [
+        {
+          "id": 9,
+          "name": "Routing"
+        }
+      ],
+      "docsLink": "https://reactrouter.com/home"
+    },
+    {
+      "id": 11,
+      "name": "Axios",
+      "description": "A promise-based HTTP client for the browser and Node.js.",
+      "categories": [
+        {
+          "id": 10,
+          "name": "API"
+        }
+      ],
+      "docsLink": "https://axios-http.com/docs/intro"
+    },
+    {
+      "id": 12,
+      "name": "MSW",
+      "description": "A full fake REST API for development and testing.",
+      "categories": [
+        {
+          "id": 6,
+          "name": "Testing"
+        }
+      ],
+      "docsLink": "https://mswjs.io/docs/"
+    },
+    {
+      "id": 13,
+      "name": "React Hook Form",
+      "description": "A library for managing forms in React with easy-to-use validation.",
+      "categories": [
+        {
+          "id": 11,
+          "name": "Form Handling"
+        }
+      ],
+      "docsLink": "https://react-hook-form.com/get-started"
+    },
+    {
+      "id": 14,
+      "name": "Zod",
+      "description": "A TypeScript-first schema declaration and validation library.",
+      "categories": [
+        {
+          "id": 11,
+          "name": "Form Handling"
+        }
+      ],
+      "docsLink": "https://zod.dev/"
+    },
+    {
+      "id": 15,
+      "name": "json-server",
+      "description": "A full fake REST API for rapid prototyping.",
+      "categories": [
+        {
+          "id": 10,
+          "name": "API"
+        }
+      ],
+      "docsLink": "https://github.com/typicode/json-server"
+    },
+    {
+      "id": 16,
+      "name": "Zustand",
+      "description": "A small, fast, and scalable state management solution for React.",
+      "categories": [
+        {
+          "id": 8,
+          "name": "State Management"
+        }
+      ],
+      "docsLink": "https://zustand.docs.pmnd.rs/getting-started/introduction"
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Frameworks"
+    },
+    {
+      "id": 2,
+      "name": "Languages"
+    },
+    {
+      "id": 3,
+      "name": "Build Tools"
+    },
+    {
+      "id": 7,
+      "name": "Linting"
+    },
+    {
+      "id": 4,
+      "name": "CSS Frameworks"
+    },
+    {
+      "id": 5,
+      "name": "UI Libraries"
+    },
+    {
+      "id": 9,
+      "name": "Routing"
+    },
+    {
+      "id": 11,
+      "name": "Form Handling"
+    },
+    {
+      "id": 8,
+      "name": "State Management"
+    },
+    {
+      "id": 6,
+      "name": "Testing"
+    },
+    {
+      "id": 10,
+      "name": "API"
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Refined Concrete Soap",
+      "description": "Ergonomic and ergonomic product",
+      "price": 799,
+      "image": "https://via.placeholder.com/150"
+    },
+    {
+      "id": 2,
+      "name": "Smartphone",
+      "description": "A smartphone for staying connected.",
+      "price": 499,
+      "image": "https://via.placeholder.com/150"
+    },
+    {
+      "id": 3,
+      "name": "Headphones",
+      "description": "Wireless headphones for listening to music.",
+      "price": 149,
+      "image": "https://via.placeholder.com/150"
+    },
+    {
+      "id": 4,
+      "name": "Tablet",
+      "description": "A tablet for work and play.",
+      "price": 349,
+      "image": "https://via.placeholder.com/150"
+    },
+    {
+      "id": 5,
+      "name": "Smartwatch",
+      "description": "A smartwatch that helps you stay connected.",
+      "price": 199,
+      "image": "https://via.placeholder.com/150"
+    }
+  ]
+}
