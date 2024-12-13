@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { TechStack } from '../types';
+import { useState } from 'react';
 
 interface TechStackQueryParams {
   page: number;
@@ -8,6 +9,8 @@ interface TechStackQueryParams {
 }
 
 export function useTechStack(query: TechStackQueryParams) {
+  const [totalCount, setTotalCount] = useState<number | null>(null);
+
   const fetchTechStack = async () => {
     const response = await axios.get<TechStack[]>('/techstack', {
       params: {
@@ -15,11 +18,15 @@ export function useTechStack(query: TechStackQueryParams) {
         _limit: query.pageSize,
       },
     });
+    const totalRecords = parseInt(response.headers['x-total-count'], 10);
+    setTotalCount(totalRecords);
     return response.data;
   };
 
-  return useQuery<TechStack[], Error>({
+  const techStackQuery = useQuery<TechStack[], Error>({
     queryKey: ['techstack', query],
     queryFn: fetchTechStack,
   });
+
+  return { techStackQuery, totalCount };
 }

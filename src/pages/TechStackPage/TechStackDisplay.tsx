@@ -21,9 +21,7 @@ export const TechStackDisplay = ({
   const pageSize = 20;
   const [page, setPage] = useState(1);
   const {
-    data: techStack,
-    isLoading,
-    error,
+    techStackQuery: { data: techStack, isLoading, error },
   } = useTechStack({ page, pageSize });
 
   const handleNextPage = () => {
