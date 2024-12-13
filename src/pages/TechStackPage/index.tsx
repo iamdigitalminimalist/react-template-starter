@@ -1,12 +1,10 @@
-import { useState } from 'react';
 import { CategoryFilter } from './CategoryFilter';
 import { TechStackDisplay } from './TechStackDisplay';
 import { TechStackDialogForm } from './TechStackDialogForm';
+import { useCategoryStore } from '@/store';
 
 export default function TechStackPage() {
-  const [selectedCategoryId, setSelectedCategoryId] = useState<number | null>(
-    null,
-  );
+  const { selectedCategoryId, setSelectedCategoryId } = useCategoryStore();
 
   return (
     <div className="flex flex-col gap-4">
