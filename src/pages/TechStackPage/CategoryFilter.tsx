@@ -1,9 +1,7 @@
 import { Skeleton } from '@/components/ui/skeleton';
-import { Category } from '@/entities';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
+import useCategories from './hooks/useCategories';
 
 interface CategoryFilterProps {
   selectedCategoryId: number | null;
@@ -14,17 +12,7 @@ export const CategoryFilter = ({
   selectedCategoryId,
   setSelectedCategoryId,
 }: CategoryFilterProps) => {
-  const {
-    data: categories,
-    isLoading,
-    error,
-  } = useQuery({
-    queryKey: ['categories'],
-    queryFn: async () => {
-      const response = await axios.get<Category[]>('/categories');
-      return response.data;
-    },
-  });
+  const { data: categories, isLoading, error } = useCategories();
 
   if (isLoading) {
     return (

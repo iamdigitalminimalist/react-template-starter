@@ -2,7 +2,7 @@ import { Category } from '@/entities';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 
-interface TechStack {
+export interface TechStack {
   id: number;
   name: string;
   description: string;

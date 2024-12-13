@@ -2,7 +2,6 @@ import axios from 'axios';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import { useQuery } from '@tanstack/react-query';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -25,8 +24,9 @@ import {
 } from '@/components/ui/form';
 
 import { useToast } from '@/hooks/use-toast';
-import type { Category, TechStack } from '@/entities';
 import { techStackSchema, type TechStackSchema } from '@/schemas';
+import useCategories from './hooks/useCategories';
+import { TechStack } from './hooks/useTechStack';
 
 interface TechStackFormProps {
   onCloseDialog: () => void;
@@ -44,17 +44,7 @@ export function TechStackForm({ onCloseDialog }: TechStackFormProps) {
     },
   });
 
-  const {
-    data: categories,
-    isLoading,
-    error,
-  } = useQuery({
-    queryKey: ['categories'],
-    queryFn: async () => {
-      const response = await axios.get<Category[]>('/categories');
-      return response.data;
-    },
-  });
+  const { data: categories, isLoading, error } = useCategories();
 
   async function onSubmit(values: TechStackSchema) {
     const selectedCategory = categories?.find(
@@ -74,7 +64,7 @@ export function TechStackForm({ onCloseDialog }: TechStackFormProps) {
     };
 
     try {
-      const response = await axios.post('/techstack', newTechStack);
+      const response = await axios.post<TechStack>('/techstack', newTechStack);
       toast({
         title: 'Tech Stack Added',
         description: `The tech stack "${values.name}" was added successfully.`,
