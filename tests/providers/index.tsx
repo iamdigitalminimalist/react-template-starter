@@ -1,5 +1,6 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { PropsWithChildren } from 'react';
+import { BrowserRouter } from 'react-router';
 
 export const AllProvider = ({ children }: PropsWithChildren) => {
   const client = new QueryClient({
@@ -10,5 +11,9 @@ export const AllProvider = ({ children }: PropsWithChildren) => {
     },
   });
 
-  return <QueryClientProvider client={client}>{children}</QueryClientProvider>;
+  return (
+    <QueryClientProvider client={client}>
+      <BrowserRouter>{children}</BrowserRouter>
+    </QueryClientProvider>
+  );
 };

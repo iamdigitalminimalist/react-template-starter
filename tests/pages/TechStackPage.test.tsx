@@ -157,6 +157,15 @@ describe('TechStackPage', () => {
     const displayedTechItems = getTechStackItems();
     expect(displayedTechItems.length).toBe(4);
   });
+
+  describe('Add Tech Stack', async () => {
+    it('should open the dialog form when the user click on the add button', async () => {
+      const { openForm } = renderComponent();
+      await openForm();
+      const dialog = await screen.findByRole('dialog');
+      expect(dialog).toBeInTheDocument();
+    });
+  });
 });
 
 const renderComponent = () => {
@@ -187,6 +196,12 @@ const renderComponent = () => {
     await user.dblClick(button);
   };
 
+  const openForm = async () => {
+    await waitForElementToBeRemoved(getCategoriesSkeleton);
+    const button = await screen.findByText(/Suggest Technology/i);
+    await user.click(button);
+  };
+
   return {
     getCategoriesSkeleton,
     getTechStackSkeleton,
@@ -196,5 +211,6 @@ const renderComponent = () => {
     findErrorMessage,
     selectCategory,
     deselectCategory,
+    openForm,
   };
 };
