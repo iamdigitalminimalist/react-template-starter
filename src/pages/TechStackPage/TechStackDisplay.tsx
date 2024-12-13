@@ -1,7 +1,4 @@
-import axios from 'axios';
-import { useQuery } from '@tanstack/react-query';
 import { ExternalLink } from 'lucide-react';
-
 import {
   Card,
   CardContent,
@@ -11,7 +8,7 @@ import {
 } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Button } from '@/components/ui/button';
-import { TechStack } from '@/entities';
+import { useTechStack } from './hooks/useTechStack';
 
 interface TechStackDisplayProps {
   selectedCategoryId: number | null;
@@ -20,17 +17,7 @@ interface TechStackDisplayProps {
 export const TechStackDisplay = ({
   selectedCategoryId,
 }: TechStackDisplayProps) => {
-  const {
-    data: techStack,
-    isLoading,
-    error,
-  } = useQuery({
-    queryKey: ['techstack'],
-    queryFn: async () => {
-      const response = await axios.get<TechStack[]>('/techstack');
-      return response.data;
-    },
-  });
+  const { data: techStack, isLoading, error } = useTechStack();
 
   if (isLoading) {
     return (

@@ -12,14 +12,6 @@ export type Product = {
   image: string;
 };
 
-export type TechStack = {
-  id: number;
-  name: string;
-  description: string;
-  categories: Category[];
-  docsLink?: string;
-};
-
 export type Category = {
   id: number;
   name: string;
