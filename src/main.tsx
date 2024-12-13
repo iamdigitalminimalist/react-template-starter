@@ -4,11 +4,14 @@ import './index.css';
 import '../axios.interceptors';
 import { createBrowserRouter, RouterProvider } from 'react-router';
 import routes from './routes';
+import Providers from './providers';
 
 const router = createBrowserRouter(routes);
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <Providers>
+      <RouterProvider router={router} />
+    </Providers>
   </StrictMode>,
 );
