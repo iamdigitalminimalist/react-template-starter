@@ -11,7 +11,7 @@ export default function TechStackPage() {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex justify-between">
-        <h1 className="text-3xl font-semibold">Tech Stack</h1>
+        <h1>Tech Stack</h1>
         <TechStackDialogForm />
       </div>
       <CategoryFilter

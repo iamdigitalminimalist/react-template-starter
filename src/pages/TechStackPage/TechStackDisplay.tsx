@@ -71,6 +71,16 @@ export const TechStackDisplay = ({
         >
           <h2 className="text-xl font-semibold">{library.name}</h2>
           <p className="text-gray-600">{library.description}</p>
+          {library.docsLink && (
+            <a
+              href={library.docsLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-500 mt-2"
+            >
+              Docs
+            </a>
+          )}
         </div>
       ))}
     </div>

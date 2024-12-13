@@ -1,3 +1,3 @@
 export default function PlayGroundPage() {
-  return null;
+  return <h1>Playground Page</h1>;
 }

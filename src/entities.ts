@@ -17,6 +17,7 @@ export type TechStack = {
   name: string;
   description: string;
   categories: Category[];
+  docsLink?: string;
 };
 
 export type Category = {

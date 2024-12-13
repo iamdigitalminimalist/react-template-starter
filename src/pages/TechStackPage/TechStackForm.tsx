@@ -98,9 +98,13 @@ export function TechStackForm({ onCloseDialog }: TechStackFormProps) {
           name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Technology Name</FormLabel>
+              <FormLabel htmlFor="name">Technology Name</FormLabel>
               <FormControl>
-                <Input placeholder="e.g., React, Kubernetes" {...field} />
+                <Input
+                  id="name"
+                  placeholder="e.g., React, Kubernetes"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -111,7 +115,7 @@ export function TechStackForm({ onCloseDialog }: TechStackFormProps) {
           name="category"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Category</FormLabel>
+              <FormLabel htmlFor="category">Category</FormLabel>
               <FormControl>
                 {isLoading ? (
                   <p>Loading categories...</p>
@@ -122,7 +126,7 @@ export function TechStackForm({ onCloseDialog }: TechStackFormProps) {
                     onValueChange={field.onChange}
                     defaultValue={field.value}
                   >
-                    <SelectTrigger>
+                    <SelectTrigger id="category">
                       <SelectValue placeholder="Select a category" />
                     </SelectTrigger>
                     <SelectContent>
@@ -144,9 +148,13 @@ export function TechStackForm({ onCloseDialog }: TechStackFormProps) {
           name="description"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Description</FormLabel>
+              <FormLabel htmlFor="description">Description</FormLabel>
               <FormControl>
-                <Textarea placeholder="Describe the technology" {...field} />
+                <Textarea
+                  id="description"
+                  placeholder="Describe the technology"
+                  {...field}
+                />
               </FormControl>
               <FormDescription>Max 250 characters.</FormDescription>
               <FormMessage />
