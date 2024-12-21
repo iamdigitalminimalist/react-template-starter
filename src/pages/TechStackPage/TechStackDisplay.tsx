@@ -39,7 +39,7 @@ export const TechStackDisplay = ({
   if (isLoading) {
     return (
       <div
-        className="grid grid-cols-2 gap-6"
+        className="grid grid-cols-1 sm:grid-cols-2 gap-6"
         role="progressbar"
         aria-label="Loading tech stack"
       >
@@ -90,7 +90,7 @@ export const TechStackDisplay = ({
           No tech stack found for the selected category
         </p>
       )}
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         {visibleTechStack.map((library) => (
           <Card key={library.id} className="flex flex-col h-full">
             <CardHeader>
