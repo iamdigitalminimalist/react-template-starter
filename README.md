@@ -41,7 +41,7 @@ To run this project locally, follow these steps:
 ### Frameworks
 
 - **React**: A JavaScript library for building user interfaces.  
-  [Documentation](https://react.dev/reference/react)
+  [Documentation](https://react.dev/reference/react){:target="_blank"}
 
 ### Languages
 
