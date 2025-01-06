@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router';
 
-export function Navbar() {
+export function Navbar(): JSX.Element {
   return (
     <nav className="p-4">
       <div className="flex justify-between items-center">

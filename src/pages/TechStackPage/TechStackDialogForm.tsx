@@ -12,9 +12,9 @@ import {
 import { TechStackForm } from './TechStackForm';
 import { useState } from 'react';
 
-export function TechStackDialogForm() {
+export function TechStackDialogForm(): JSX.Element {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const closeDialog = () => setIsDialogOpen(false);
+  const closeDialog = (): void => setIsDialogOpen(false);
 
   return (
     <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>

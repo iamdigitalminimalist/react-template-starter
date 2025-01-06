@@ -10,27 +10,36 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { Button } from '@/components/ui/button';
 import { useTechStack } from './hooks/useTechStack';
 import { useState } from 'react';
+import { SkeletonLoader } from './SkeletonLoader';
 
 interface TechStackDisplayProps {
   selectedCategoryId: number | null;
 }
 
+interface TechStackItem {
+  id: number;
+  name: string;
+  description: string;
+  docsLink?: string;
+  categories: { id: number }[];
+}
+
 export const TechStackDisplay = ({
   selectedCategoryId,
-}: TechStackDisplayProps) => {
+}: TechStackDisplayProps): JSX.Element => {
   const pageSize = 20;
   const [page, setPage] = useState(1);
   const {
     techStackQuery: { data: techStack, isLoading, error },
   } = useTechStack({ page, pageSize });
 
-  const handleNextPage = () => {
+  const handleNextPage = (): void => {
     if (techStack && techStack.length === pageSize) {
       setPage((prevPage) => prevPage + 1);
     }
   };
 
-  const handlePreviousPage = () => {
+  const handlePreviousPage = (): void => {
     if (page > 1) {
       setPage((prevPage) => prevPage - 1);
     }
@@ -43,20 +52,23 @@ export const TechStackDisplay = ({
         role="progressbar"
         aria-label="Loading tech stack"
       >
-        {[...Array(4)].map((_, idx) => (
-          <Card key={idx} className="flex flex-col h-full">
-            <CardHeader>
-              <Skeleton className="h-6 w-3/4 mt-12" />
-            </CardHeader>
-            <CardContent className="flex-grow mt-10">
-              <Skeleton className="h-4 w-full mb-2" />
-              <Skeleton className="h-4 w-5/6" />
-            </CardContent>
-            <CardFooter className="pt-6">
-              <Skeleton className="h-9 w-full" />
-            </CardFooter>
-          </Card>
-        ))}
+        <SkeletonLoader
+          numSkeletons={4}
+          renderSkeleton={(idx) => (
+            <Card key={idx} className="flex flex-col h-full">
+              <CardHeader>
+                <Skeleton className="h-6 w-3/4 mt-12" />
+              </CardHeader>
+              <CardContent className="flex-grow mt-10">
+                <Skeleton className="h-4 w-full mb-2" />
+                <Skeleton className="h-4 w-5/6" />
+              </CardContent>
+              <CardFooter className="pt-6">
+                <Skeleton className="h-9 w-full" />
+              </CardFooter>
+            </Card>
+          )}
+        />
       </div>
     );
   }
@@ -64,7 +76,7 @@ export const TechStackDisplay = ({
   if (error) {
     return (
       <p className="text-center text-red-500">
-        Failed to load tech stack: {error.message}
+        Failed to load tech stack: {(error as { message: string }).message}
       </p>
     );
   }
@@ -76,9 +88,8 @@ export const TechStackDisplay = ({
       </p>
     );
   }
-
   const visibleTechStack = selectedCategoryId
-    ? techStack.filter((tech) =>
+    ? techStack.filter((tech: TechStackItem) =>
         tech.categories.some((category) => category.id === selectedCategoryId),
       )
     : techStack;
@@ -91,7 +102,7 @@ export const TechStackDisplay = ({
         </p>
       )}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-        {visibleTechStack.map((library) => (
+        {(visibleTechStack as TechStackItem[]).map((library) => (
           <Card key={library.id} className="flex flex-col h-full">
             <CardHeader>
               <CardTitle>
@@ -134,7 +145,10 @@ export const TechStackDisplay = ({
         </Button>
         <Button
           onClick={handleNextPage}
-          disabled={techStack.length < pageSize || techStack.length === 0}
+          disabled={
+            (techStack as TechStackItem[]).length < pageSize ||
+            (techStack as TechStackItem[]).length === 0
+          }
           variant="outline"
         >
           Next

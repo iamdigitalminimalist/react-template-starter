@@ -3,7 +3,7 @@ import Providers from '@/providers';
 import { Outlet } from 'react-router';
 import { Navbar } from './Navbar';
 
-export default function Layout() {
+export default function Layout(): JSX.Element {
   return (
     <Providers>
       <div className="flex flex-col prose mx-auto min-h-screen">

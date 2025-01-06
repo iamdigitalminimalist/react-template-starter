@@ -26,13 +26,15 @@ import {
 import { useToast } from '@/hooks/use-toast';
 import { techStackSchema, type TechStackSchema } from '@/schemas';
 import useCategories from './hooks/useCategories';
-import { TechStack } from './types';
+import type { TechStack } from './types';
 
 interface TechStackFormProps {
   onCloseDialog: () => void;
 }
 
-export function TechStackForm({ onCloseDialog }: TechStackFormProps) {
+export function TechStackForm({
+  onCloseDialog,
+}: TechStackFormProps): JSX.Element {
   const { toast } = useToast();
 
   const form = useForm<TechStackSchema>({
@@ -46,7 +48,7 @@ export function TechStackForm({ onCloseDialog }: TechStackFormProps) {
 
   const { data: categories, isLoading, error } = useCategories();
 
-  async function onSubmit(values: TechStackSchema) {
+  async function onSubmit(values: TechStackSchema): Promise<void> {
     const selectedCategory = categories?.find(
       (category) => category.name === values.category,
     );
@@ -64,13 +66,12 @@ export function TechStackForm({ onCloseDialog }: TechStackFormProps) {
     };
 
     try {
-      const response = await axios.post<TechStack>('/techstack', newTechStack);
+      await axios.post<TechStack>('/techstack', newTechStack);
       toast({
         title: 'Tech Stack Added',
         description: `The tech stack "${values.name}" was added successfully.`,
       });
       onCloseDialog();
-      console.log('Tech stack added:', response.data);
     } catch (error) {
       console.error('Error adding tech stack:', error);
       toast({

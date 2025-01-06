@@ -1,4 +1,4 @@
-import { RouteObject } from 'react-router';
+import type { RouteObject } from 'react-router';
 import PlayGroundPage from './pages/PlayGroundPage.tsx';
 import TechStackPage from './pages/TechStackPage/index.tsx';
 import HomePage from './pages/Homepage.tsx';

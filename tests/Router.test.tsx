@@ -27,7 +27,7 @@ describe('Router', () => {
   );
 });
 
-const navigateTo = (path: string) => {
+const navigateTo = (path: string): void => {
   const router = createMemoryRouter(routes, {
     initialEntries: [path],
   });
