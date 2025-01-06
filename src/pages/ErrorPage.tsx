@@ -1,6 +1,6 @@
 import { isRouteErrorResponse, useRouteError } from 'react-router';
 
-export default function ErrorPage() {
+export default function ErrorPage(): JSX.Element {
   const error = useRouteError();
   const prod = import.meta.env.PROD;
 

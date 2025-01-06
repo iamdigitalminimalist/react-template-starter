@@ -2,6 +2,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import useCategories from './hooks/useCategories';
+import { SkeletonLoader } from './SkeletonLoader';
 
 interface CategoryFilterProps {
   selectedCategoryId: number | null;
@@ -11,7 +12,7 @@ interface CategoryFilterProps {
 export const CategoryFilter = ({
   selectedCategoryId,
   setSelectedCategoryId,
-}: CategoryFilterProps) => {
+}: CategoryFilterProps): JSX.Element | null => {
   const { data: categories, isLoading, error } = useCategories();
 
   if (isLoading) {
@@ -21,11 +22,14 @@ export const CategoryFilter = ({
         role="progressbar"
         aria-label="Loading categories"
       >
-        {[...Array(10)].map((_, idx) => (
-          <div key={idx} className="p-1">
-            <Skeleton className="h-6 w-24" />
-          </div>
-        ))}
+        <SkeletonLoader
+          numSkeletons={10}
+          renderSkeleton={(idx) => (
+            <div key={idx} className="p-1">
+              <Skeleton className="h-6 w-24" />
+            </div>
+          )}
+        />
       </div>
     );
   }

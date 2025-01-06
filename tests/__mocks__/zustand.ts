@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 // __mocks__/zustand.ts
 // https://zustand.docs.pmnd.rs/guides/testing#vitest
 

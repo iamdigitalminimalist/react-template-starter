@@ -3,7 +3,7 @@ import { TechStackDisplay } from './TechStackDisplay';
 import { TechStackDialogForm } from './TechStackDialogForm';
 import { useCategoryStore } from '@/store';
 
-export default function TechStackPage() {
+export default function TechStackPage(): JSX.Element {
   const { selectedCategoryId, setSelectedCategoryId } = useCategoryStore();
 
   return (
