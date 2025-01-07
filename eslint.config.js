@@ -34,6 +34,13 @@ export default tseslint.config(
       'react/jsx-uses-react': 'error',
       'react/jsx-uses-vars': 'error',
       'react/prop-types': 'off',
+      'react/jsx-no-duplicate-props': 'error',
+      'react/jsx-no-undef': 'error',
+      'react/no-children-prop': 'error',
+      'react/no-deprecated': 'warn',
+      'react/no-direct-mutation-state': 'error',
+      'react/no-unescaped-entities': 'error',
+      'react/self-closing-comp': 'warn',
 
       // React Hooks
       ...reactHooks.configs.recommended.rules,
@@ -65,6 +72,12 @@ export default tseslint.config(
       '@typescript-eslint/no-explicit-any': 'warn',
       '@typescript-eslint/no-floating-promises': 'error',
       '@typescript-eslint/consistent-type-imports': 'warn',
+      '@typescript-eslint/no-unnecessary-type-assertion': 'warn',
+      '@typescript-eslint/no-non-null-assertion': 'warn',
+      '@typescript-eslint/no-inferrable-types': 'warn',
+      '@typescript-eslint/no-unnecessary-condition': 'warn',
+      '@typescript-eslint/prefer-optional-chain': 'warn',
+      '@typescript-eslint/prefer-nullish-coalescing': 'warn',
 
       // Formatting
       'eol-last': ['error', 'always'],
