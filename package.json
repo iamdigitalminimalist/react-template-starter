@@ -13,7 +13,8 @@
     "start": "concurrently -n SERVER,CLIENT -c yellow,blue \"npm run server\" \"npm run dev\"",
     "test": "vitest",
     "test:ui": "vitest --ui",
-    "coverage": "vitest --coverage"
+    "coverage": "vitest --coverage",
+    "clean:extraneous": "npm prune && npm ls --depth=0"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
