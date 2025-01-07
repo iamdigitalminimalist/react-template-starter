@@ -2,7 +2,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import type { PropsWithChildren } from 'react';
 import { BrowserRouter } from 'react-router';
 
-export const AllProvider = ({ children }: PropsWithChildren): JSX.Element => {
+export function AllProvider({ children }: PropsWithChildren): JSX.Element {
   const client = new QueryClient({
     defaultOptions: {
       queries: {
@@ -16,4 +16,4 @@ export const AllProvider = ({ children }: PropsWithChildren): JSX.Element => {
       <BrowserRouter>{children}</BrowserRouter>
     </QueryClientProvider>
   );
-};
+}

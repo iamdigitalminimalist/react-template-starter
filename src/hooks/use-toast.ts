@@ -27,6 +27,7 @@ let count = 0;
 
 function genId(): string {
   count = (count + 1) % Number.MAX_SAFE_INTEGER;
+
   return count.toString();
 }
 
@@ -96,8 +97,8 @@ export const reducer = (state: State, action: Action): State => {
       if (toastId) {
         addToRemoveQueue(toastId);
       } else {
-        state.toasts.forEach((toast) => {
-          addToRemoveQueue(toast.id);
+        state.toasts.forEach((t) => {
+          addToRemoveQueue(t.id);
         });
       }
 
@@ -120,6 +121,7 @@ export const reducer = (state: State, action: Action): State => {
           toasts: [],
         };
       }
+
       return {
         ...state,
         toasts: state.toasts.filter((t) => t.id !== action.toastId),
@@ -127,6 +129,7 @@ export const reducer = (state: State, action: Action): State => {
 
     default:
       console.error('Unknown action type:', action);
+
       return state;
   }
 };
@@ -147,14 +150,14 @@ type Toast = Omit<ToasterToast, 'id'>;
 function toast({ ...props }: Toast): {
   id: string;
   dismiss: () => void;
-  update: (props: ToasterToast) => void;
+  update: (newProps: ToasterToast) => void;
 } {
   const id = genId();
 
-  const update = (props: ToasterToast): void =>
+  const update = (newProps: ToasterToast): void =>
     dispatch({
       type: 'UPDATE_TOAST',
-      toast: { ...props, id },
+      toast: { ...newProps, id },
     });
   const dismiss = (): void => dispatch({ type: 'DISMISS_TOAST', toastId: id });
 
@@ -185,8 +188,10 @@ function useToast(): State & {
 
   React.useEffect(() => {
     listeners.push(setState);
+
     return () => {
       const index = listeners.indexOf(setState);
+
       if (index > -1) {
         listeners.splice(index, 1);
       }

@@ -5,6 +5,7 @@ export const simulateDelay = (endpoint: string): void => {
   server.use(
     http.get(endpoint, async () => {
       await delay();
+
       return HttpResponse.json([]);
     }),
   );

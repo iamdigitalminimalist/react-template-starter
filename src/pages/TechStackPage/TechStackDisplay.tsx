@@ -24,9 +24,9 @@ interface TechStackItem {
   categories: { id: number }[];
 }
 
-export const TechStackDisplay = ({
+export function TechStackDisplay({
   selectedCategoryId,
-}: TechStackDisplayProps): JSX.Element => {
+}: TechStackDisplayProps): JSX.Element {
   const pageSize = 20;
   const [page, setPage] = useState(1);
   const {
@@ -152,4 +152,4 @@ export const TechStackDisplay = ({
       </div>
     </div>
   );
-};
+}

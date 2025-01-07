@@ -3,6 +3,14 @@ import { createMemoryRouter, RouterProvider } from 'react-router';
 import routes from '@/routes';
 import { render } from '@testing-library/react';
 
+const navigateTo = (path: string): void => {
+  const router = createMemoryRouter(routes, {
+    initialEntries: [path],
+  });
+
+  render(<RouterProvider router={router} />);
+};
+
 describe('Router', () => {
   const routeTests = [
     { route: '/', heading: /home/i },
@@ -26,11 +34,3 @@ describe('Router', () => {
     },
   );
 });
-
-const navigateTo = (path: string): void => {
-  const router = createMemoryRouter(routes, {
-    initialEntries: [path],
-  });
-
-  render(<RouterProvider router={router} />);
-};
