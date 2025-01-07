@@ -6,6 +6,7 @@ export default function ReactQueryProvider({
   children,
 }: PropsWithChildren): JSX.Element {
   const [queryClient] = useState(() => new QueryClient());
+
   return (
     <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
   );

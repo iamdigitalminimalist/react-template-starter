@@ -8,6 +8,7 @@ import routes from './routes';
 const router = createBrowserRouter(routes);
 
 const rootElement = document.getElementById('root');
+
 if (rootElement) {
   createRoot(rootElement).render(
     <StrictMode>

@@ -54,6 +54,16 @@ export default tseslint.config(
           unnamedComponents: 'function-expression',
         },
       ],
+      'react/jsx-no-bind': [
+        'warn',
+        {
+          ignoreRefs: true,
+          allowArrowFunctions: true,
+          allowFunctions: false,
+          allowBind: false,
+        },
+      ],
+      'react/jsx-key': 'warn',
 
       // React Hooks
       ...reactHooks.configs.recommended.rules,
@@ -65,12 +75,7 @@ export default tseslint.config(
         { allowConstantExport: true },
       ],
 
-      // Code Style and Best Practices
-      'consistent-return': 'error',
-      'no-console': ['warn', { allow: ['warn', 'error'] }],
-      'no-debugger': 'warn',
-      curly: ['error', 'multi-line'],
-      eqeqeq: ['error', 'always'],
+      // TypeScript
       '@typescript-eslint/no-unused-vars': [
         'warn',
         { argsIgnorePattern: '^_' },
@@ -91,6 +96,11 @@ export default tseslint.config(
       '@typescript-eslint/no-unnecessary-condition': 'warn',
       '@typescript-eslint/prefer-optional-chain': 'warn',
       '@typescript-eslint/prefer-nullish-coalescing': 'warn',
+      '@typescript-eslint/prefer-as-const': 'warn', // Prefer `as const` for literal types
+      '@typescript-eslint/no-misused-promises': 'error', // Avoid misuse of Promises in conditions
+      '@typescript-eslint/no-unnecessary-type-arguments': 'warn', // Avoid unnecessary type arguments
+      '@typescript-eslint/switch-exhaustiveness-check': 'error', // Ensure switch statements are exhaustive
+      '@typescript-eslint/require-array-sort-compare': 'error', // Require a compare function for `Array.sort`
 
       // Accessibility rules
       'jsx-a11y/alt-text': 'warn',
@@ -117,12 +127,6 @@ export default tseslint.config(
         },
       ],
 
-      // Formatting
-      'eol-last': ['error', 'always'],
-      'linebreak-style': ['error', 'unix'],
-      quotes: ['error', 'single', { avoidEscape: true }],
-      semi: ['error', 'always'],
-
       // Best Practices
       'default-case': 'warn', // Require default cases in switch statements
       'no-alert': 'warn', // Disallow use of `alert`, `confirm`, and `prompt`
@@ -132,6 +136,30 @@ export default tseslint.config(
       'no-var': 'error', // Disallow use of `var`
       'prefer-template': 'warn', // Prefer template literals over string concatenation
       'no-implicit-coercion': 'warn', // Avoid shorthand type conversions
+      'consistent-return': 'error',
+      'no-console': ['warn', { allow: ['warn', 'error'] }],
+      'no-debugger': 'warn',
+      curly: ['error', 'multi-line'],
+      eqeqeq: ['error', 'always'],
+
+      // Formatting
+      'eol-last': ['error', 'always'],
+      'linebreak-style': ['error', 'unix'],
+      quotes: ['error', 'single', { avoidEscape: true }],
+      semi: ['error', 'always'],
+      'padding-line-between-statements': [
+        'warn',
+        { blankLine: 'always', prev: '*', next: 'return' },
+        { blankLine: 'always', prev: ['const', 'let', 'var'], next: '*' },
+        {
+          blankLine: 'any',
+          prev: ['const', 'let', 'var'],
+          next: ['const', 'let', 'var'],
+        },
+      ],
+      'spaced-comment': ['warn', 'always', { markers: ['/'] }],
+      'object-curly-spacing': ['error', 'always'],
+      'array-bracket-spacing': ['error', 'never'],
 
       // Naming Conventions
       '@typescript-eslint/naming-convention': [

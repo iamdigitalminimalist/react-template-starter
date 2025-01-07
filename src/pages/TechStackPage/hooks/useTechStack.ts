@@ -10,7 +10,7 @@ interface TechStackQueryParams {
 }
 
 export function useTechStack(query: TechStackQueryParams): {
-  techStackQuery: UseQueryResult<TechStack[], Error>;
+  techStackQuery: UseQueryResult<TechStack[]>;
   totalCount: number | null;
 } {
   const [totalCount, setTotalCount] = useState<number | null>(null);
@@ -23,11 +23,13 @@ export function useTechStack(query: TechStackQueryParams): {
       },
     });
     const totalRecords = parseInt(response.headers['x-total-count'], 10);
+
     setTotalCount(totalRecords);
+
     return response.data;
   };
 
-  const techStackQuery = useQuery<TechStack[], Error>({
+  const techStackQuery = useQuery<TechStack[]>({
     queryKey: ['techstack', query],
     queryFn: fetchTechStack,
     placeholderData: keepPreviousData,

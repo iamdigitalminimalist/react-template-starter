@@ -6,6 +6,7 @@ export const handlers = [
   ...db.category.toHandlers('rest'),
   http.get('/techstack', () => {
     const techStack = db.tech.getAll();
+
     return HttpResponse.json(techStack);
   }),
 ];

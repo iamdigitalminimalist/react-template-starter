@@ -55,6 +55,7 @@ export function TechStackForm({
 
     if (!categories || !selectedCategory) {
       console.error('Categories are undefined. Unable to submit the form.');
+
       return;
     }
 
@@ -83,7 +84,13 @@ export function TechStackForm({
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+      <form
+        onSubmit={(event) => {
+          void form.handleSubmit(onSubmit)(event);
+        }}
+        className="space-y-4"
+      >
+        {' '}
         <FormField
           control={form.control}
           name="name"
