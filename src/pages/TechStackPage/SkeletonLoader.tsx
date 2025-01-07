@@ -10,7 +10,7 @@ export function SkeletonLoader({
   return (
     <>
       {[...Array(numSkeletons)].map((_, idx) => (
-        <div key={idx} className="p-1">
+        <div key={crypto.randomUUID()} className="p-1">
           {renderSkeleton(idx)}
         </div>
       ))}

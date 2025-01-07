@@ -9,10 +9,10 @@ interface CategoryFilterProps {
   setSelectedCategoryId: (category: number | null) => void;
 }
 
-export const CategoryFilter = ({
+export function CategoryFilter({
   selectedCategoryId,
   setSelectedCategoryId,
-}: CategoryFilterProps): JSX.Element | null => {
+}: CategoryFilterProps): JSX.Element | null {
   const { data: categories, isLoading, error } = useCategories();
 
   if (isLoading) {
@@ -68,4 +68,4 @@ export const CategoryFilter = ({
       ))}
     </div>
   );
-};
+}

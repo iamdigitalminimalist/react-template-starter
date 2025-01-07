@@ -11,6 +11,72 @@ import { db } from '../mocks/db';
 import userEvent from '@testing-library/user-event';
 import type { Category, TechStack } from '@/pages/TechStackPage/types';
 
+const renderComponent = (): {
+  getCategoriesSkeleton: () => HTMLElement | null;
+  getTechStackSkeleton: () => HTMLElement | null;
+  getCategoryButtons: () => HTMLButtonElement[];
+  getTechStackItems: () => HTMLHeadingElement[];
+  getErrorMessage: () => HTMLElement | null;
+  findErrorMessage: () => Promise<HTMLElement>;
+  selectCategory: (categoryName: string) => Promise<void>;
+  deselectCategory: (categoryName: string) => Promise<void>;
+  openForm: () => Promise<void>;
+} => {
+  render(<TechStackPage />, { wrapper: AllProvider });
+
+  const user = userEvent.setup();
+
+  // Selectors
+  const getCategoriesSkeleton = (): HTMLElement | null =>
+    screen.queryByRole('progressbar', { name: /loading categories/i });
+
+  const getTechStackSkeleton = (): HTMLElement | null =>
+    screen.queryByRole('progressbar', { name: /loading tech stack/i });
+
+  const getCategoryButtons = (): HTMLButtonElement[] =>
+    screen.getAllByRole('button');
+
+  const getTechStackItems = (): HTMLHeadingElement[] =>
+    screen.getAllByRole('heading', { level: 2 });
+
+  const getErrorMessage = (): HTMLElement | null =>
+    screen.queryByText(/error/i);
+
+  const findErrorMessage = async (): Promise<HTMLElement> =>
+    await screen.findByText(/error/i);
+
+  // Actions
+  const selectCategory = async (categoryName: string): Promise<void> => {
+    await waitForElementToBeRemoved(getCategoriesSkeleton);
+    const button = screen.getByRole('button', { name: categoryName });
+    await user.click(button);
+  };
+
+  const deselectCategory = async (categoryName: string): Promise<void> => {
+    await waitForElementToBeRemoved(getCategoriesSkeleton);
+    const button = screen.getByRole('button', { name: categoryName });
+    await user.dblClick(button);
+  };
+
+  const openForm = async (): Promise<void> => {
+    await waitForElementToBeRemoved(getCategoriesSkeleton);
+    const button = await screen.findByText(/Suggest Technology/i);
+    await user.click(button);
+  };
+
+  return {
+    getCategoriesSkeleton,
+    getTechStackSkeleton,
+    getCategoryButtons,
+    getTechStackItems,
+    getErrorMessage,
+    findErrorMessage,
+    selectCategory,
+    deselectCategory,
+    openForm,
+  };
+};
+
 describe('TechStackPage', () => {
   const categories: Category[] = [];
   const techStack: TechStack[] = [];
@@ -167,69 +233,3 @@ describe('TechStackPage', () => {
     });
   });
 });
-
-const renderComponent = (): {
-  getCategoriesSkeleton: () => HTMLElement | null;
-  getTechStackSkeleton: () => HTMLElement | null;
-  getCategoryButtons: () => HTMLButtonElement[];
-  getTechStackItems: () => HTMLHeadingElement[];
-  getErrorMessage: () => HTMLElement | null;
-  findErrorMessage: () => Promise<HTMLElement>;
-  selectCategory: (categoryName: string) => Promise<void>;
-  deselectCategory: (categoryName: string) => Promise<void>;
-  openForm: () => Promise<void>;
-} => {
-  render(<TechStackPage />, { wrapper: AllProvider });
-
-  const user = userEvent.setup();
-
-  // Selectors
-  const getCategoriesSkeleton = (): HTMLElement | null =>
-    screen.queryByRole('progressbar', { name: /loading categories/i });
-
-  const getTechStackSkeleton = (): HTMLElement | null =>
-    screen.queryByRole('progressbar', { name: /loading tech stack/i });
-
-  const getCategoryButtons = (): HTMLButtonElement[] =>
-    screen.getAllByRole('button');
-
-  const getTechStackItems = (): HTMLHeadingElement[] =>
-    screen.getAllByRole('heading', { level: 2 });
-
-  const getErrorMessage = (): HTMLElement | null =>
-    screen.queryByText(/error/i);
-
-  const findErrorMessage = async (): Promise<HTMLElement> =>
-    await screen.findByText(/error/i);
-
-  // Actions
-  const selectCategory = async (categoryName: string): Promise<void> => {
-    await waitForElementToBeRemoved(getCategoriesSkeleton);
-    const button = screen.getByRole('button', { name: categoryName });
-    await user.click(button);
-  };
-
-  const deselectCategory = async (categoryName: string): Promise<void> => {
-    await waitForElementToBeRemoved(getCategoriesSkeleton);
-    const button = screen.getByRole('button', { name: categoryName });
-    await user.dblClick(button);
-  };
-
-  const openForm = async (): Promise<void> => {
-    await waitForElementToBeRemoved(getCategoriesSkeleton);
-    const button = await screen.findByText(/Suggest Technology/i);
-    await user.click(button);
-  };
-
-  return {
-    getCategoriesSkeleton,
-    getTechStackSkeleton,
-    getCategoryButtons,
-    getTechStackItems,
-    getErrorMessage,
-    findErrorMessage,
-    selectCategory,
-    deselectCategory,
-    openForm,
-  };
-};

@@ -72,8 +72,8 @@ export function TechStackForm({
         description: `The tech stack "${values.name}" was added successfully.`,
       });
       onCloseDialog();
-    } catch (error) {
-      console.error('Error adding tech stack:', error);
+    } catch (err) {
+      console.error('Error adding tech stack:', err);
       toast({
         title: 'Error',
         description: 'Something went wrong, please try again later.',
