@@ -191,17 +191,6 @@
         }
       ],
       "docsLink": "https://zustand.docs.pmnd.rs/getting-started/introduction"
-    },
-    {
-      "id": 1736183956168,
-      "name": "Test",
-      "description": "gsdfgfdsgfds",
-      "categories": [
-        {
-          "id": 11,
-          "name": "Form Handling"
-        }
-      ]
     }
   ],
   "categories": [

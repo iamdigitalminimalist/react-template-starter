@@ -1,5 +1,5 @@
 import type { UseQueryResult } from '@tanstack/react-query';
-import { useQuery } from '@tanstack/react-query';
+import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import type { TechStack } from '../types';
 import { useState } from 'react';
@@ -30,6 +30,7 @@ export function useTechStack(query: TechStackQueryParams): {
   const techStackQuery = useQuery<TechStack[], Error>({
     queryKey: ['techstack', query],
     queryFn: fetchTechStack,
+    placeholderData: keepPreviousData,
   });
 
   return { techStackQuery, totalCount };

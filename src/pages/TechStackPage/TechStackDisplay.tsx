@@ -30,15 +30,14 @@ export const TechStackDisplay = ({
   const pageSize = 20;
   const [page, setPage] = useState(1);
   const {
-    techStackQuery: { data: techStack, isLoading, error },
+    techStackQuery: { data: techStack, isLoading, error, isPlaceholderData },
   } = useTechStack({ page, pageSize });
 
   const handleNextPage = (): void => {
-    if (techStack && techStack.length === pageSize) {
+    if (!isPlaceholderData && techStack?.length === pageSize) {
       setPage((prevPage) => prevPage + 1);
     }
   };
-
   const handlePreviousPage = (): void => {
     if (page > 1) {
       setPage((prevPage) => prevPage - 1);
@@ -145,10 +144,7 @@ export const TechStackDisplay = ({
         </Button>
         <Button
           onClick={handleNextPage}
-          disabled={
-            (techStack as TechStackItem[]).length < pageSize ||
-            (techStack as TechStackItem[]).length === 0
-          }
+          disabled={isPlaceholderData || techStack.length < pageSize}
           variant="outline"
         >
           Next
